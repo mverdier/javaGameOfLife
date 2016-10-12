@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.random;
+
 /**
  * Represents the grid that contains the cells
  */
@@ -27,7 +29,9 @@ public class Grid {
             ArrayList<Cell> row = new ArrayList<>(size);
 
             for (int j = 0; j < size; j++) {
-                row.add(new Cell(i, j, false));
+
+                //Randomly selects the content of the cell
+                row.add(new Cell(i, j, random() < 0.5));
             }
 
             this.board.add(row);
@@ -76,7 +80,7 @@ public class Grid {
      * @return Cell at the given coordinates
      */
     private Cell getCell(int x, int y) {
-        return board.get(y % size).get(x % size);
+        return board.get(value(y)).get(value(x));
     }
 
     /**
@@ -93,11 +97,26 @@ public class Grid {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (i != 0 && j != 0) {
-                    neighbors.add(getCell((y + i) % size, (x + i) % size));
+                    neighbors.add(getCell(value(y + i), value(x + i)));
                 }
             }
         }
 
         return neighbors;
+    }
+
+    /**
+     * Returns the valid index according to
+     * the input and to the board's size
+     * @param index Input
+     * @return Actual value
+     */
+    private int value(int index) {
+        if (index < 0) {
+            return value(index + size);
+        } else if (index >= size) {
+            return value(index - size);
+        }
+        return index;
     }
 }
