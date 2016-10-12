@@ -2,6 +2,8 @@ package service;
 
 import model.Grid;
 
+import java.util.Scanner;
+
 /**
  * Basic launcher that will initiate a game
  */
@@ -23,7 +25,10 @@ public class Launcher {
             grid.update();
 
             //Slight 0.5s pause
-            Thread.sleep(500);
+            //Thread.sleep(500);
+
+            Scanner scanner = new Scanner(System.in);
+            scanner.nextLine();
 
             //Display the grid
             grid.display();

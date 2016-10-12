@@ -31,7 +31,7 @@ public class Grid {
             for (int j = 0; j < size; j++) {
 
                 //Randomly selects the content of the cell
-                row.add(new Cell(i, j, random() < 0.5));
+                row.add(new Cell(i, j, random() < 0.1));
             }
 
             this.board.add(row);
@@ -96,7 +96,7 @@ public class Grid {
 
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                if (i != 0 && j != 0) {
+                if (i != 0 || j != 0) {
                     neighbors.add(getCell(value(y + i), value(x + i)));
                 }
             }

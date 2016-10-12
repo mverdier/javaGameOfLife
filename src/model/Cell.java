@@ -47,7 +47,7 @@ public class Cell {
      * space, otherwise a full space (#)
      */
     public void display() {
-        System.out.print(alive ? " " : "#");
+        System.out.print(alive ? "#" : " ");
     }
 
     /**
